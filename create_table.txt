@@ -4,9 +4,9 @@ CREATE TABLE BUILDING
 
 CREATE TABLE ROOM
 	(seq				SERIAL			PRIMARY KEY,
-	 roomname			VARCHAR(15),
-	 building_seq			VARCHAR(15),		CONSTRAINT room_building_seq_fkey
-	 REFERENCES			building(seq),
+	 room_name			VARCHAR(15),
+	 building_seq			INT			CONSTRAINT room_building_seq_fkey 
+	 REFERENCES 			building(seq),
 	 memo				VARCHAR(100));
 	 
 CREATE TABLE PC	
@@ -21,8 +21,10 @@ CREATE TABLE ROUTER
 	 dns_server			cidr,
 	 subnet_mask			cidr,
 	 physical_range			VARCHAR(40),
-	 building_seq			VARCHAR(15),		CONSTRAINT router_building_seq_fkey
+	 building_seq			INT			CONSTRAINT router_building_seq_fkey
 	 REFERENCES			building(seq),
+	 room_seq			INT			CONSTRAINT router_room_seq_fkey
+	 REFERENCES			room(seq),
 	 memo				VARCHAR(100));
 
 CREATE TABLE SWITCH
@@ -39,6 +41,7 @@ CREATE TABLE PORT
 	 subnet_mask			cidr,
 	 gateway			cidr,
 	 dns_server			cidr,
+	 sub_dns_server			cidr,
 	 pc_seq				INT			CONSTRAINT port_pc_seq_fkey
 	 REFERENCES			pc(seq),
 	 memo				VARCHAR(100));
