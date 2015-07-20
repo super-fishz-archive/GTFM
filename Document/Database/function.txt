@@ -1,0 +1,34 @@
+대학 Page 라우터 list
+
+create view router_list as 	
+	select router.seq, router.ip, router.subnet_mask, room.room_name
+	from router join room
+	on router.room_seq = room.seq;
+
+
+create function building_router_list(int) RETURNS SETOF router_list as $$
+	select router_list.seq, router_list.ip, router_list.subnet_mask, router_list.room_name
+	from router_list join router on router_list.seq = router.seq
+	where router.building_seq = $1;
+$$ language sql;
+
+
+----------------------------------------------------------------------------------------------------
+
+
+대학 Page 스위치 list
+
+create view switch_list as
+	select switch.seq, switch.ip, room.room_name
+	from switch join router
+	on switch.router_seq = router.seq
+	join room
+	on router.room_seq = room.seq;
+
+create function building_switch_list(int) RETURNS SETOF switch_list as $$
+	select switch_list.seq, switch_list.ip, switch_list.room_name
+	from switch_list join switch on switch_list.seq = switch.seq
+	join router on switch.router_seq = router.seq
+	where router.building_seq = $1;
+$$ language sql;
+
