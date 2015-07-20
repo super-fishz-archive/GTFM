@@ -17,6 +17,7 @@ CREATE TABLE PC
 
 CREATE TABLE ROUTER
 	(seq				SERIAL			PRIMARY KEY,
+	 ip				cidr,
 	 default_gateway		cidr,
 	 dns_server			cidr,
 	 subnet_mask			cidr,
