@@ -32,7 +32,7 @@ CREATE TABLE SWITCH
 	(seq				SERIAL			PRIMARY KEY,
 	 router_seq			INT			CONSTRAINT switch_router_seq_fkey
 	 REFERENCES			router(seq),
-	 ip				text,
+	 ip				cidr,
 	 memo				VARCHAR(100));
 
 CREATE TABLE PORT
