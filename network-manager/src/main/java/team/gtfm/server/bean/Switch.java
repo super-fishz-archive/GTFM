@@ -3,7 +3,9 @@ package team.gtfm.server.bean;
 public class Switch {
 	private int seq;
 	private int routerSeq;
+	private String ip;
 	private String memo;
+	
 	public int getSeq() {
 		return seq;
 	}
@@ -21,6 +23,14 @@ public class Switch {
 	}
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 	
 	

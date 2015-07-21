@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.gtfm.server.db.buildingMapper">
+	<select id="selectBuildingAll" resultType="team.gtfm.server.bean.Building">
+		select * from building;
+	</select>
+	
+	<select id="selectBuilding" resultType="team.gtfm.server.bean.Building">
+		select * from building where seq = #{seq}
+	</select>
+	
+	<insert id="insertBuilding" parameterType="team.gtfm.server.bean.Building">
+		insert into building (building_name) values (#{buildingName})
+	</insert>
+	
+	<delete id="deleteBuilding" parameterType="team.gtfm.server.bean.Building">
+		delete from building where seq = #{seq}
+	</delete>
+</mapper>

@@ -5,7 +5,7 @@ public class Port {
 	private int switchSeq;
 	private String ip;
 	private String subnetMask;
-	private String gateway;
+	private String defaultGateway;
 	private String dnsServer;
 	private String subDnsServer;
 	private int pcSeq;
@@ -35,10 +35,10 @@ public class Port {
 		this.subnetMask = subnetMask;
 	}
 	public String getGateway() {
-		return gateway;
+		return defaultGateway;
 	}
 	public void setGateway(String gateway) {
-		this.gateway = gateway;
+		this.defaultGateway = gateway;
 	}
 	public String getDnsServer() {
 		return dnsServer;

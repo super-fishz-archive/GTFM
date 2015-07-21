@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.gtfm.server.db.switchMapper">
+	<select id="selectSwitchAll" resultType="team.gtfm.server.bean.Switch">
+		select * from switch;
+	</select>
+	
+	<select id="selectSwitch" resultType="team.gtfm.server.bean.Switch">
+		select * from switch where seq = #{seq}
+	</select>
+	
+	<insert id="insertSwitch" parameterType="team.gtfm.server.bean.Switch">
+		insert into switch (router_seq, ip, memo)
+		values (#{routerSeq}, #{ip}, #{memo})
+	</insert>
+	
+	<delete id="deleteSwitch">
+		delete from switch
+		where seq = #{seq}
+	</delete>
+</mapper>
