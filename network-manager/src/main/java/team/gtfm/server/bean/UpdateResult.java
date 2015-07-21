@@ -11,5 +11,14 @@ public class UpdateResult {
 		this.result = result;
 	}
 	
+	public void setResult(int c){
+		this.result = (c > 0)? true : false;
+	}
 	
+	
+	public static UpdateResult create(int c){
+		UpdateResult result = new UpdateResult();
+		result.setResult(c);
+		return result;
+	}
 }

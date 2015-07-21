@@ -1,2 +1,17 @@
 /team/
 /public/
+<<<<<<< HEAD
+=======
+/building-mapper.xml
+/asd.xml
+/mapper-mapper.xml
+/building-mapper2.xml
+/pc-mapper.xml
+/pc-mapper2.xml
+/room-mapper.xml
+/room-mapper2.xml
+/switch-mapper.xml
+/switch-mapper2.xml
+/router-mapper.xml
+/ip-mapper.xml
+>>>>>>> 360520d01d43c0db09b561402e03d891e92da6bc
