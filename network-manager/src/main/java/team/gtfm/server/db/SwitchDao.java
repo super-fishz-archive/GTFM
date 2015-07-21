@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import team.gtfm.server.bean.Switch;
+import team.gtfm.server.bean.SwitchStatus;
 
 @Repository
 public class SwitchDao {
@@ -26,6 +27,15 @@ public class SwitchDao {
 			Map<String, Object> map = new HashMap<>();
 			map.put("seq", seq);
 			return sqlSession.selectOne("team.gtfm.server.db.switchMapper.selectSwitch", map);
+		}
+	}
+	
+	public List<SwitchStatus> selectSwitchInBuilding(int seq){
+		try(SqlSession sqlSession = factory.newSqlSession()){
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("seq", seq);
+			return sqlSession.selectList("team.gtfm.server.db.switchMapper.selectSwitchInBuilding", map);
 		}
 	}
 		

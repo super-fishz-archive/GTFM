@@ -21,4 +21,8 @@
 		delete from router
 		where seq = #{seq}
 	</delete>
+	
+	<select id="selectRouterInBuilding" resultType="team.gtfm.server.bean.RouterStatus">
+		select (building_router_list(#{buildingSeq})).*
+	</select>
 </mapper>

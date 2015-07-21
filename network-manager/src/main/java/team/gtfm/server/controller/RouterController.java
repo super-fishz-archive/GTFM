@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import team.gtfm.server.bean.Router;
+import team.gtfm.server.bean.RouterStatus;
 import team.gtfm.server.bean.UpdateResult;
 import team.gtfm.server.db.RouterDao;
 
@@ -38,6 +39,15 @@ public class RouterController {
 	public ResponseEntity<Router> getRoom(@PathVariable String seq){
 		
 		Router router = dao.selectRouter(Integer.parseInt(seq));
+		return new ResponseEntity<>(router, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/data/router/in-building/{seq}", 
+			method=RequestMethod.GET,
+			produces=contentType)
+	public ResponseEntity<List<RouterStatus>> getRouterInBuilding(@PathVariable String seq){
+		
+		List<RouterStatus> router = dao.selectRouterInBuilding(Integer.parseInt(seq));
 		return new ResponseEntity<>(router, HttpStatus.OK);
 	}
 	

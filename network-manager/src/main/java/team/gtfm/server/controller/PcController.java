@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
-
 import team.gtfm.server.bean.Pc;
+import team.gtfm.server.bean.PcStatus;
 import team.gtfm.server.bean.UpdateResult;
 import team.gtfm.server.db.PcDao;
 
@@ -42,6 +41,14 @@ public class PcController {
 	public ResponseEntity<Pc> getPc(@PathVariable String seq){
 		
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/data/pc/in-building/{seq}",
+			method=RequestMethod.GET,
+			produces=contentType)
+	public ResponseEntity<List<PcStatus>> getPcInBuilding(@PathVariable String seq){
+		List<PcStatus> list = dao.selectPcInBuidling(Integer.parseInt(seq));
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/data/pc",
