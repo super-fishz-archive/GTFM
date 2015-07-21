@@ -2,3 +2,4 @@
 *.swo
 *~
 network-manager/.gradle/
+network-manager/build/
