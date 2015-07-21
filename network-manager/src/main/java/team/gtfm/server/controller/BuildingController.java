@@ -1,5 +1,7 @@
 package team.gtfm.server.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,11 +35,13 @@ public class BuildingController {
 	@RequestMapping(value="/data/building/{buildingName}",
 			method=RequestMethod.GET,
 			produces=contentType)
-	public ResponseEntity<Building> getBuildings(@PathVariable String buildingName){
-		Building b = new Building();
-		b.setSeq(1);
-		b.setBuildingName("ABC");
-		return new ResponseEntity<>(b, HttpStatus.OK);
+	public ResponseEntity<List<String>> getBuildings(@PathVariable String buildingName){
+//		Building b = new Building();
+//		b.setSeq(1);
+//		b.setBuildingName("ABC");
+		
+		List<String> list = networkManagerDao.test();
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/data/building/{buildingName}",
