@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import team.gtfm.server.bean.Router;
+import team.gtfm.server.bean.RouterStatus;
 
 @Repository
 public class RouterDao {
@@ -44,6 +45,14 @@ public class RouterDao {
 			int c = sqlSession.delete("team.gtfm.server.db.routerMapper.deleteRouter", map);
 			sqlSession.commit();
 			return c;
+		}
+	}
+	
+	public List<RouterStatus> selectRouterInBuilding(int buildingSeq){
+		try(SqlSession sqlSession = factory.newSqlSession()){
+			Map<String, Object> map = new HashMap<>();
+			map.put("buildingSeq", buildingSeq);
+			return sqlSession.selectList("team.gtfm.server.db.routerMapper.selectRouterInBuilding", map);
 		}
 	}
 }

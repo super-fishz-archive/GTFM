@@ -1,2 +1,12 @@
+/application.properties
+/building-mapper.xml
+/ip-mapper.xml
+/mybatis-config.xml
+/org/
+/pc-mapper.xml
+/public/
+/room-mapper.xml
+/router-mapper.xml
+/switch-mapper.xml
 /team/
 /public/

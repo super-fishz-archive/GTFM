@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import team.gtfm.server.bean.Switch;
+import team.gtfm.server.bean.SwitchStatus;
 import team.gtfm.server.bean.UpdateResult;
 import team.gtfm.server.db.SwitchDao;
 
@@ -38,6 +39,15 @@ public class SwitchController {
 	public ResponseEntity<Switch> getRoom(@PathVariable String seq){
 		
 		Switch s = dao.selectSwitch(Integer.parseInt(seq));
+		return new ResponseEntity<>(s, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/data/switch/in-building/{seq}", 
+			method=RequestMethod.GET,
+			produces=contentType)
+	public ResponseEntity<List<SwitchStatus>> getSwitchInBuilding(@PathVariable String seq){
+		
+		List<SwitchStatus> s = dao.selectSwitchInBuilding(Integer.parseInt(seq));
 		return new ResponseEntity<>(s, HttpStatus.OK);
 	}
 	

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import team.gtfm.server.bean.Pc;
+import team.gtfm.server.bean.PcStatus;
 import team.gtfm.server.bean.Switch;
 
 @Repository
@@ -45,6 +46,14 @@ public class PcDao {
 			int c = sqlSession.delete("team.gtfm.server.db.pcMapper.deletePc", map);
 			sqlSession.commit();
 			return c;
+		}
+	}
+
+	public List<PcStatus> selectPcInBuidling(int seq) {
+		try(SqlSession sqlSession = factory.newSqlSession()){
+			Map<String, Object> map = new HashMap<>();
+			map.put("buildingSeq", seq);
+			return sqlSession.selectList("team.gtfm.server.db.pcMapper.selectPcInBuilding", map);
 		}
 	}
 }
