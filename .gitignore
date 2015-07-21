@@ -1,0 +1,4 @@
+*.swp
+*.swo
+*~
+network-manager/.gradle/

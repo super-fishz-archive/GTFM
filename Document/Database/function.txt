@@ -79,11 +79,11 @@ create function insert_pc(a int, b int, c varchar, d int) returns void as '
 --pc 테이블 delete 함수
 
 create function delete_pc(a int) returns void as '
-	delete from pc
-	where seq = a;
 	update port
 	set pc_seq = null
 	where pc_seq = a;
+	delete from pc
+	where seq = a;
 ' language sql;
 
 
@@ -94,7 +94,7 @@ create function delete_pc(a int) returns void as '
 
 --사용중인 IP 대역 파악 함수
 
-create function using_ip() returns setof text as $$
+create function using_ip() returns setof cidr as $$
 	select ip
 	from port
 	where pc_seq is not null;
@@ -104,7 +104,7 @@ $$ language sql;
 
 --여유 IP 대역 파악 함수
 
-create function not_using_ip() returns setof text as $$
+create function not_using_ip() returns setof cidr as $$
 	select ip
 	from port
 	where pc_seq is null;
@@ -117,16 +117,16 @@ $$ language sql;
 
 create view searched_ip as
 	select port.ip, room.room_name, room.seq
-	from port join pc
+	from port full outer join pc
 	on port.pc_seq = pc.seq
-	join room
+	full outer join room
 	on pc.room_seq = room.seq;
 
 
 create function search_ip(text) returns setof searched_ip as $$
 	select *
 	from searched_ip
-	where ip = $1;
+	where abbrev(ip) like '%'||$1||'%';
 $$ language sql;
 
 -------------------------------------------------------------------------------------------------------
@@ -135,7 +135,7 @@ $$ language sql;
 
 --라우터 정보
 
-create function router_info(int) returns table(ip text, default_gateway text, subnet_mask text, location text) as $$
+create function router_info(int) returns table(ip cidr, default_gateway cidr, subnet_mask cidr, location text) as $$
 	select router.ip, router.default_gateway, router.subnet_mask, building.building_name ||' '|| room.room_name as location
 	from router join building
 	on router.building_seq = building.seq

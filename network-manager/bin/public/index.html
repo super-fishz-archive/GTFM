@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
@@ -46,8 +46,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="IP_Management.htm">IP관리</a></li>
-        <li><a href="Subnet_Calculate.htm">서브넷계산기</a></li>
+
+        <li class="active"><a href="IP_Management.htm" target="main_board">IP관리</a></li>
+
+        <li>
+<a href="#" data-toggle="modal" data-target="#myModal">
+  서브넷 계산기
+</a>
+	</li>
+
       </ul>
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
@@ -61,12 +68,37 @@
 
     <div class="container-fluid">
       <div class="col-md-2 sidebar">
-        <h1>장비,장소</h1>
+        <h1>장비,장소</h1><br><br>
+          <h5><a href="#" target=>자연과학대학</a></h5>
+          <ul class="nav nav-sidebar">
+            	<li><a href="#">201호</a></li>
+            	<li><a href="#">202호</a></li>
+            	<li><a href="#">401호</a></li>
+		  </ul>
+		  <h5><a href="#">사회과학대학</a></h5>
+		  <ul class="nav nav-sidebar">
+            <li><a href="#">101호</a></li>
+            <li><a href="#">102호</a></li>
+            <li><a href="#">103호</a></li>
+          </ul>
+          <h5><a href="#">상허연구동</a></h5>
+          <ul class="nav nav-sidebar">
+          	<li><a href="#">101호</a></li>
+            <li><a href="#">102호</a></li>
+            <li><a href="#">103호</a></li>
+          </ul>
+          <h5><a href="#">종합강의동</a></h5>
+          <ul class="nav nav-sidebar">
+          	<li><a href="#">101호</a></li>
+            <li><a href="#">102호</a></li>
+            <li><a href="#">103호</a></li>
+          </ul>
+
       </div>
       <div class="col-md-8 main">
         <h1>Main Board</h1>
       </div>
-      <div class="col-md-2 sidebar">
+      <div class="col-md-2 sidebar" name="main_board">
         <h1>History</h1>
       </div>
 
@@ -76,10 +108,42 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./Starter Template for Bootstrap_files/jquery.min.js"></script>
-    <script src="./Starter Template for Bootstrap_files/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="./Starter Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
   
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+        <tr>
+            <td>네트워크</td>
+            <td width="10"><div align="center">:</div></td>
+            <td><div class="input-group"><input type="text" class="form-control" placeholder="Input the Network"></div></td>
+        </tr>
+        <tr>
+            <td>필요 host 개수</td>
+            <td width="10"><div align="center">:</div></td>
+            <td><div class="input-group"><input type="text" class="form-control" placeholder="Input the Number of host" /></div></td>
+        </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">서브네팅하기</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body></html>
