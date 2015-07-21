@@ -1,0 +1,22 @@
+drop function not_using_ip();
+
+CREATE OR REPLACE FUNCTION not_using_ip()
+	RETURNS TABLE(seq int, switch_seq int, ip text, subnet_mask text, default_gateway text, dns_server text, sub_dns_server text, pc_seq int, memo varchar(100)) AS $$
+BEGIN
+RETURN QUERY
+	SELECT port.seq, 
+		port.switch_seq,
+		port.ip,
+		port.subnet_mask,
+		port.default_gateway,
+		port.dns_server,
+		port.sub_dns_server,
+		port.pc_seq,
+		port.memo
+	FROM port 
+	WHERE port.pc_seq is null;
+END
+$$ LANGUAGE 'plpgsql';
+
+--테이블을 반환하는 함수 호출
+select (not_using_ip()).*;

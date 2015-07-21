@@ -1,5 +1,7 @@
 package team.gtfm.server.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,7 @@ public class BuildingController {
 		Building b = new Building();
 		b.setSeq(1);
 		b.setBuildingName("ABC");
+		
 		return new ResponseEntity<>(b, HttpStatus.OK);
 	}
 	
