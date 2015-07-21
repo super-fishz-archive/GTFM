@@ -13,6 +13,15 @@ create function building_router_list(int) RETURNS SETOF router_list as $$
 $$ language sql;
 
 
+라우터명
+
+create function router_name(int) returns text as '
+	select substr(building.building_name, 1, 2) ||'라우터'|| router.seq
+	from router join building on router.building_seq = building.seq
+	where router.seq = $1
+' language sql;
+
+
 ----------------------------------------------------------------------------------------------------
 
 
@@ -32,6 +41,12 @@ create function building_switch_list(int) RETURNS SETOF switch_list as $$
 	where router.building_seq = $1;
 $$ language sql;
 
+스위치명
+create function switch_name(int,int) returns text as '
+	select substr(building.building_name, 1, 2) ||'스위치'|| switch.seq
+	from switch join router on switch.router_seq = router.seq
+	join building on router.building_seq = building.seq
+	where 
 
 ----------------------------------------------------------------------------------------------------
 
@@ -63,6 +78,31 @@ create function count_pc(int) RETURNS bigint as $$
 	select count(*) from pc
 	where room_seq = $1;
 $$ language sql;
+
+-----------------------------------------------------------------------------------------------------
+--PC 리스트 함수
+create function room_pc_list(int) returns setof int as $$
+	select seq from pc
+	where pc.room_seq = $1
+$$ language sql;
+
+
+-- PC 정보 확인
+
+create view pc_info_vu as
+	select pc.seq, port.ip, port.subnet_mask, port.default_gateway, port.dns_server, port.sub_dns_server
+	from pc join port
+	on pc.seq = port.pc_seq;
+
+
+create function pc_info(int) returns setof pc_info_vu as $$
+	select *
+	from pc_info_vu
+	where seq = $1;
+$$ language sql;
+
+
+--------------------------------------------------------------------------------------------
 
 
 --pc 테이블 insert 함수
