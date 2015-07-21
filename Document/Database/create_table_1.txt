@@ -41,7 +41,7 @@ CREATE TABLE PORT
 	 REFERENCES			switch(seq),
 	 ip				text,
 	 subnet_mask			text,
-	 default_gateway			text,
+	 default_gateway		text,
 	 dns_server			text,
 	 sub_dns_server			text,
 	 pc_seq				INT			CONSTRAINT port_pc_seq_fkey
