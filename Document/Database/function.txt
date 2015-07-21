@@ -123,7 +123,7 @@ create view searched_ip as
 	on pc.room_seq = room.seq;
 
 
-create function search_ip(text) returns setof searched_ip as $$
+create function search_ip(cidr) returns setof searched_ip as $$
 	select *
 	from searched_ip
 	where ip = $1;
