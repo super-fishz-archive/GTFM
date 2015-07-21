@@ -79,11 +79,11 @@ create function insert_pc(a int, b int, c varchar, d int) returns void as '
 --pc 테이블 delete 함수
 
 create function delete_pc(a int) returns void as '
-	delete from pc
-	where seq = a;
 	update port
 	set pc_seq = null
 	where pc_seq = a;
+	delete from pc
+	where seq = a;
 ' language sql;
 
 
@@ -117,9 +117,9 @@ $$ language sql;
 
 create view searched_ip as
 	select port.ip, room.room_name, room.seq
-	from port join pc
+	from port full outer join pc
 	on port.pc_seq = pc.seq
-	join room
+	full outer join room
 	on pc.room_seq = room.seq;
 
 
