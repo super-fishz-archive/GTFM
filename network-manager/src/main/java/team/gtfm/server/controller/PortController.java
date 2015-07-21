@@ -27,8 +27,10 @@ public class PortController {
 			consumes=CONTENT_TYPE,
 			produces=CONTENT_TYPE)
 	public ResponseEntity<UpdateResult> insertBuilding(@RequestBody Port port){
-		
-		return new ResponseEntity<>(HttpStatus.OK);
+		int c = networkManagerDao.insertPort(port);
+		UpdateResult result = new UpdateResult();
+		result.setResult((c > 0)? true : false);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/data/port/{seq}",
@@ -38,11 +40,23 @@ public class PortController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/data/port",
+			method=RequestMethod.GET,
+			produces=CONTENT_TYPE)
+	public ResponseEntity<List<Port>> getBuildingsAll(){
+		
+		List<Port> list = networkManagerDao.selectPortAll();
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/data/port/{seq}",
 			method=RequestMethod.DELETE,
 			produces=CONTENT_TYPE)
 	public ResponseEntity<UpdateResult> deleteBuilding(@PathVariable String seq){
-		return new ResponseEntity<>(HttpStatus.OK);
+		int c = networkManagerDao.deletePort(Integer.parseInt(seq));
+		UpdateResult result = new UpdateResult();
+		result.setResult((c > 0)? true : false);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="data/port",

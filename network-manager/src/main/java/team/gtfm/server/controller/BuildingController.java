@@ -29,25 +29,39 @@ public class BuildingController {
 			produces=contentType)
 	public ResponseEntity<UpdateResult> insertBuilding(@RequestBody Building building){
 		
-		return new ResponseEntity<>(HttpStatus.OK);
+		int c = networkManagerDao.insertBuilding(building);
+		UpdateResult result = new UpdateResult();
+		result.setResult((c > 0)? true : false);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/data/building/{buildingName}",
+	@RequestMapping(value="/data/building",
 			method=RequestMethod.GET,
 			produces=contentType)
-	public ResponseEntity<Building> getBuildings(@PathVariable String buildingName){
-		Building b = new Building();
-		b.setSeq(1);
-		b.setBuildingName("ABC");
+	public ResponseEntity<List<Building>> getBuildings(){
 		
+		List<Building> b = networkManagerDao.selectBuildingAll();
 		return new ResponseEntity<>(b, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/data/building/{buildingName}",
+	@RequestMapping(value="/data/building/{seq}",
+			method=RequestMethod.GET,
+			produces=contentType)
+	public ResponseEntity<Building> getBuildings(@PathVariable String seq){
+		
+		Building b = networkManagerDao.selectBuilding(Integer.parseInt(seq));
+		return new ResponseEntity<>(b, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/data/building/{seq}",
 			method=RequestMethod.DELETE,
 			produces=contentType)
-	public ResponseEntity<UpdateResult> deleteBuilding(@PathVariable String buildingName){
-		return new ResponseEntity<>(HttpStatus.OK);
+	public ResponseEntity<UpdateResult> deleteBuilding(@PathVariable String seq){
+		
+		int c = networkManagerDao.deleteBuilding(Integer.parseInt(seq));
+		UpdateResult result = new UpdateResult();
+		result.setResult((c > 0)? true : false);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="data/building",
