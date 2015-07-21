@@ -3,7 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.gtfm.server.db.ipMapper">
-  <select id="notUsingIp" resultType="String">
-    select not_using_ip()
+  <select id="notUsingIp" resultType="team.gtfm.server.bean.Port">
+    select (not_using_ip()).*
   </select>
+  
+  <select id="selectPort" resultType="team.gtfm.server.bean.Port">
+  	select * from port where seq = ?
+  </select>
+  
 </mapper>
