@@ -1,4 +1,4 @@
-대학 Page 라우터 list
+﻿-- 대학 Page 라우터 list
 
 create view router_list as 	
 	select router.seq, router.ip, router.subnet_mask, room.room_name
@@ -16,7 +16,7 @@ $$ language sql;
 ----------------------------------------------------------------------------------------------------
 
 
-대학 Page 스위치 list
+--대학 Page 스위치 list
 
 create view switch_list as
 	select switch.seq, switch.ip, room.room_name
@@ -35,7 +35,7 @@ $$ language sql;
 
 ----------------------------------------------------------------------------------------------------
 
-대학 Page PC list
+--대학 Page PC list
 
 create view pc_list as
 	select pc.seq, room.room_name, port.ip
@@ -55,9 +55,9 @@ $$ language sql;
 
 -----------------------------------------------------------------------------------------------------
 
-반 Page
+--반 Page
 
-pc 갯수 파악 함수
+--pc 갯수 파악 함수
 
 create function count_pc(int) RETURNS bigint as $$
 	select count(*) from pc
@@ -65,7 +65,7 @@ create function count_pc(int) RETURNS bigint as $$
 $$ language sql;
 
 
-pc 테이블 insert 함수
+--pc 테이블 insert 함수
 
 create function insert_pc(a int, b int, c varchar, d int) returns void as '
 	insert into pc(seq, room_seq, memo)
@@ -76,7 +76,7 @@ create function insert_pc(a int, b int, c varchar, d int) returns void as '
 ' language sql;
 
 
-pc 테이블 delete 함수
+--pc 테이블 delete 함수
 
 create function delete_pc(a int) returns void as '
 	delete from pc
@@ -90,9 +90,9 @@ create function delete_pc(a int) returns void as '
 ------------------------------------------------------------------------------------------------------
 
 
-IP관리 창
+--IP관리 창
 
-사용중인 IP 대역 파악 함수
+--사용중인 IP 대역 파악 함수
 
 create function using_ip() returns setof text as $$
 	select ip
@@ -102,7 +102,7 @@ $$ language sql;
 
 
 
-여유 IP 대역 파악 함수
+--여유 IP 대역 파악 함수
 
 create function not_using_ip() returns setof text as $$
 	select ip
@@ -113,7 +113,7 @@ $$ language sql;
 
 ------------------------------------------------------------------------------------------------------
 
-ip 검색 창
+--ip 검색 창
 
 create view searched_ip as
 	select port.ip, room.room_name, room.seq
@@ -131,9 +131,9 @@ $$ language sql;
 
 -------------------------------------------------------------------------------------------------------
 
-라우터 페이지
+--라우터 페이지
 
-라우터 정보
+--라우터 정보
 
 create function router_info(int) returns table(ip text, default_gateway text, subnet_mask text, location text) as $$
 	select router.ip, router.default_gateway, router.subnet_mask, building.building_name ||' '|| room.room_name as location
@@ -146,9 +146,9 @@ $$ language sql;
 
 -------------------------------------------------------------------------------------------------------
 
-스위치 페이지
+--스위치 페이지
 
-스위치 포트 갯수 파악 함수
+--스위치 포트 갯수 파악 함수
 
 create function count_port(int) RETURNS bigint as $$
 	select count(*) from port
@@ -157,7 +157,7 @@ $$ language sql;
 
 
 
-스위치 포트 정보 
+--스위치 포트 정보 
 
 create view port_info_vu as
 	select port.seq, port.ip, port.subnet_mask, port.default_gateway, port.dns_server, port.sub_dns_server, port.pc_seq, pc.room_seq
