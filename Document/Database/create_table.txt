@@ -17,10 +17,10 @@ CREATE TABLE PC
 
 CREATE TABLE ROUTER
 	(seq				SERIAL			PRIMARY KEY,
-	 ip				cidr,
-	 default_gateway		cidr,
-	 dns_server			cidr,
-	 subnet_mask			cidr,
+	 ip				text,
+	 default_gateway		text,
+	 dns_server			text,
+	 subnet_mask			text,
 	 physical_range			VARCHAR(40),
 	 building_seq			INT			CONSTRAINT router_building_seq_fkey
 	 REFERENCES			building(seq),
@@ -32,17 +32,18 @@ CREATE TABLE SWITCH
 	(seq				SERIAL			PRIMARY KEY,
 	 router_seq			INT			CONSTRAINT switch_router_seq_fkey
 	 REFERENCES			router(seq),
+	 ip				text,
 	 memo				VARCHAR(100));
 
 CREATE TABLE PORT
 	(seq				SERIAL			PRIMARY KEY,
 	 switch_seq			INT			CONSTRAINT port_switch_seq_fkey
 	 REFERENCES			switch(seq),
-	 ip				cidr,
-	 subnet_mask			cidr,
-	 gateway			cidr,
-	 dns_server			cidr,
-	 sub_dns_server			cidr,
+	 ip				text,
+	 subnet_mask			text,
+	 default_gateway		text,
+	 dns_server			text,
+	 sub_dns_server			text,
 	 pc_seq				INT			CONSTRAINT port_pc_seq_fkey
 	 REFERENCES			pc(seq),
 	 memo				VARCHAR(100));

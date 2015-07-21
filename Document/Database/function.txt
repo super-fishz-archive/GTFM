@@ -1,4 +1,4 @@
-ï»¿-- ëŒ€í•™ Page ë¼ìš°í„° list
+-- ´ëÇĞ Page ¶ó¿ìÅÍ list
 
 create view router_list as 	
 	select router.seq, router.ip, router.subnet_mask, room.room_name
@@ -16,7 +16,7 @@ $$ language sql;
 ----------------------------------------------------------------------------------------------------
 
 
---ëŒ€í•™ Page ìŠ¤ìœ„ì¹˜ list
+--´ëÇĞ Page ½ºÀ§Ä¡ list
 
 create view switch_list as
 	select switch.seq, switch.ip, room.room_name
@@ -35,7 +35,7 @@ $$ language sql;
 
 ----------------------------------------------------------------------------------------------------
 
---ëŒ€í•™ Page PC list
+--´ëÇĞ Page PC list
 
 create view pc_list as
 	select pc.seq, room.room_name, port.ip
@@ -55,9 +55,9 @@ $$ language sql;
 
 -----------------------------------------------------------------------------------------------------
 
---ë°˜ Page
+--¹İ Page
 
---pc ê°¯ìˆ˜ íŒŒì•… í•¨ìˆ˜
+--pc °¹¼ö ÆÄ¾Ç ÇÔ¼ö
 
 create function count_pc(int) RETURNS bigint as $$
 	select count(*) from pc
@@ -65,7 +65,7 @@ create function count_pc(int) RETURNS bigint as $$
 $$ language sql;
 
 
---pc í…Œì´ë¸” insert í•¨ìˆ˜
+--pc Å×ÀÌºí insert ÇÔ¼ö
 
 create function insert_pc(a int, b int, c varchar, d int) returns void as '
 	insert into pc(seq, room_seq, memo)
@@ -76,23 +76,23 @@ create function insert_pc(a int, b int, c varchar, d int) returns void as '
 ' language sql;
 
 
---pc í…Œì´ë¸” delete í•¨ìˆ˜
+--pc Å×ÀÌºí delete ÇÔ¼ö
 
 create function delete_pc(a int) returns void as '
-	delete from pc
-	where seq = a;
 	update port
 	set pc_seq = null
 	where pc_seq = a;
+	delete from pc
+	where seq = a;
 ' language sql;
 
 
 ------------------------------------------------------------------------------------------------------
 
 
---IPê´€ë¦¬ ì°½
+--IP°ü¸® Ã¢
 
---ì‚¬ìš©ì¤‘ì¸ IP ëŒ€ì—­ íŒŒì•… í•¨ìˆ˜
+--»ç¿ëÁßÀÎ IP ´ë¿ª ÆÄ¾Ç ÇÔ¼ö
 
 create function using_ip() returns setof text as $$
 	select ip
@@ -102,7 +102,7 @@ $$ language sql;
 
 
 
---ì—¬ìœ  IP ëŒ€ì—­ íŒŒì•… í•¨ìˆ˜
+--¿©À¯ IP ´ë¿ª ÆÄ¾Ç ÇÔ¼ö
 
 create function not_using_ip() returns setof text as $$
 	select ip
@@ -113,27 +113,27 @@ $$ language sql;
 
 ------------------------------------------------------------------------------------------------------
 
---ip ê²€ìƒ‰ ì°½
+--ip °Ë»ö Ã¢
 
 create view searched_ip as
 	select port.ip, room.room_name, room.seq
-	from port join pc
+	from port full outer join pc
 	on port.pc_seq = pc.seq
-	join room
+	full outer join room
 	on pc.room_seq = room.seq;
 
 
 create function search_ip(text) returns setof searched_ip as $$
 	select *
 	from searched_ip
-	where ip = $1;
+	where ip like '%'||$1||'%';
 $$ language sql;
 
 -------------------------------------------------------------------------------------------------------
 
---ë¼ìš°í„° í˜ì´ì§€
+--¶ó¿ìÅÍ ÆäÀÌÁö
 
---ë¼ìš°í„° ì •ë³´
+--¶ó¿ìÅÍ Á¤º¸
 
 create function router_info(int) returns table(ip text, default_gateway text, subnet_mask text, location text) as $$
 	select router.ip, router.default_gateway, router.subnet_mask, building.building_name ||' '|| room.room_name as location
@@ -146,9 +146,9 @@ $$ language sql;
 
 -------------------------------------------------------------------------------------------------------
 
---ìŠ¤ìœ„ì¹˜ í˜ì´ì§€
+--½ºÀ§Ä¡ ÆäÀÌÁö
 
---ìŠ¤ìœ„ì¹˜ í¬íŠ¸ ê°¯ìˆ˜ íŒŒì•… í•¨ìˆ˜
+--½ºÀ§Ä¡ Æ÷Æ® °¹¼ö ÆÄ¾Ç ÇÔ¼ö
 
 create function count_port(int) RETURNS bigint as $$
 	select count(*) from port
@@ -157,7 +157,7 @@ $$ language sql;
 
 
 
---ìŠ¤ìœ„ì¹˜ í¬íŠ¸ ì •ë³´ 
+--½ºÀ§Ä¡ Æ÷Æ® Á¤º¸ 
 
 create view port_info_vu as
 	select port.seq, port.ip, port.subnet_mask, port.default_gateway, port.dns_server, port.sub_dns_server, port.pc_seq, pc.room_seq
