@@ -26,6 +26,7 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-freemarker")
   	compile("org.mybatis:mybatis:3.3.0")
   	compile("postgresql:postgresql:9.0-801.jdbc4")
     testCompile("junit:junit")
