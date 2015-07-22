@@ -40,7 +40,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="index.html">Brand</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -74,7 +74,7 @@
 				<li class="dropdown">
           			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의실 <span class="caret"></span></a>
           			<ul class="dropdown-menu">
-            		<li><a href="#">201호</a></li>
+            		<li><a href="Room_View.html">201호</a></li>
             		<li><a href="#">202호</a></li>
             		<li><a href="#">203호</a></li>
           			</ul>
@@ -153,24 +153,34 @@
         	<p class="lead">Switch Status</p>
                 	<h4 align="left">JA1_SWITCH 주소할당 상태<small>자연과학대학교</small></h4>
 
-                <div class="row">
+<script>
+function viewPage(self) {
+	var target = $(self).data("target");
+	
+	
+		$("#tabs_parent div.list-group").css("display", "none");
+		$('#' + target).css("display", "block");
+
+}
+</script>
+                <div class="row" id="tabs_parent">
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#" data-target="tab_static">Static</a></li>
-  <li role="presentation"><a href="#" data-target="tab_dhcp">DHCP Network</a></li>
+  <li role="presentation" class="active"><a href="#" data-target="tab_static" onclick="viewPage(this)")>Static</a></li>
+  <li role="presentation"><a href="#" data-target="tab_dhcp" onclick="viewPage(this)" >DHCP Network</a></li>
 </ul>
 			<div class="list-group" id="tab_static">
-  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">1</a>
-  				<a href="#" class="list-group-item">2</a>
-  				<a href="#" class="list-group-item">3</a>
-  				<a href="#" class="list-group-item">4</a>
-  				<a href="#" class="list-group-item">5</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">1 static</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">2</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">3</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">4</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">5</a>
 			</div>
-						<div class="list-group" id="tab_dhcp">
-  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">1</a>
-  				<a href="#" class="list-group-item">2</a>
-  				<a href="#" class="list-group-item">3</a>
-  				<a href="#" class="list-group-item">4</a>
-  				<a href="#" class="list-group-item">5</a>
+			<div class="list-group" id="tab_dhcp" style="display:none">
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">1 dhcp</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">2</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">3</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">4</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">5</a>
 			</div>
 				</div><!-- /.row -->
 				
@@ -202,25 +212,40 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel" align="center">ICP/IPv4 정보</h4>
       </div>
       <div class="modal-body">
         <table class="table table-striped">
         <tr>
-            <td>네트워크</td>
+            <td>IP address</td>
             <td width="10"><div align="center">:</div></td>
-            <td><div class="input-group"><input type="text" class="form-control" placeholder="Input the Network"></div></td>
+            <td>_________________</td>
         </tr>
         <tr>
-            <td>필요 host 개수</td>
+            <td>Subnet mask</td>
             <td width="10"><div align="center">:</div></td>
-            <td><div class="input-group"><input type="text" class="form-control" placeholder="Input the Number of host" /></div></td>
+            <td>_________________</td>
+        </tr>
+        <tr>
+        	<td>Default gateway</td>
+        	<td width="10"><div align="center">:</div></td>
+        	<td>_________________</td>
+        </tr>
+        <tr>
+        	<td>DNS server</td>
+        	<td width="10"><div align="center">:</div></td>
+        	<td>_________________</td>
+        </tr>
+        <tr>
+        	<td> Sub DNS</td>
+        	<td width="10"><div align="center">:</div></td>
+        	<td>_________________</td>
         </tr>
         </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">서브네팅하기</button>
+        <button type="button" class="btn btn-primary">해당장소로 이동</button>
       </div>
     </div>
   </div>

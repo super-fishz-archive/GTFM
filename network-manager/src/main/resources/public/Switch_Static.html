@@ -42,10 +42,10 @@
 </ul>
 			<div class="list-group" id="tab_static">
   				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">1</a>
-  				<a href="#" class="list-group-item">2</a>
-  				<a href="#" class="list-group-item">3</a>
-  				<a href="#" class="list-group-item">4</a>
-  				<a href="#" class="list-group-item">5</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">2</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">3</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">4</a>
+  				<a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">5</a>
 			</div>
       	</div>
     </div>
@@ -57,25 +57,40 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">서브넷 계산기</h4>
+        <h4 class="modal-title" id="myModalLabel" align="center">ICP/IPv4 정보</h4>
       </div>
       <div class="modal-body">
         <table class="table table-striped">
         <tr>
-            <td>네트워크</td>
+            <td>IP address</td>
             <td width="10"><div align="center">:</div></td>
-            <td><div class="input-group"><input type="text" class="form-control" placeholder="Input the Network"></div></td>
+            <td>_________________</td>
         </tr>
         <tr>
-            <td>필요 host 개수</td>
+            <td>Subnet mask</td>
             <td width="10"><div align="center">:</div></td>
-            <td><div class="input-group"><input type="text" class="form-control" placeholder="Input the Number of host" /></div></td>
+            <td>_________________</td>
+        </tr>
+        <tr>
+        	<td>Default gateway</td>
+        	<td width="10"><div align="center">:</div></td>
+        	<td>_________________</td>
+        </tr>
+        <tr>
+        	<td>DNS server</td>
+        	<td width="10"><div align="center">:</div></td>
+        	<td>_________________</td>
+        </tr>
+        <tr>
+        	<td> Sub DNS</td>
+        	<td width="10"><div align="center">:</div></td>
+        	<td>_________________</td>
         </tr>
         </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">서브네팅하기</button>
+        <button type="button" class="btn btn-primary">해당장소로 이동</button>
       </div>
     </div>
   </div>
