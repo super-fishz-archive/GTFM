@@ -64,11 +64,11 @@
     <div class="container-fluid">
         <div class="starter-template">
             <h1>101호</h1>
-            <p class="lead">자연과학대학교</p>
+            <p class="lead">과학기술대학</p>
         </div>
         <div class="row">
             <div class="col-md-10 left">
-                <h4>101호 PC Status<small>자연과학대학교</small></h4>
+                <h4>101호 PC Status<small>과학기술대학</small></h4>
             </div>
         </div>
         <div class="table-responsive">

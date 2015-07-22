@@ -170,3 +170,103 @@
 <span class="nt">&lt;/tr&gt;</span></code></pre>
         </div>
         <p>&nbsp;</p>
+        
+        
+  <script>
+  function getUrlParameter(sParam)
+  {
+      var sPageURL = window.location.search.substring(1);
+      var sURLVariables = sPageURL.split('&');
+      for (var i = 0; i < sURLVariables.length; i++) 
+      {
+          var sParameterName = sURLVariables[i].split('=');
+          if (sParameterName[0] == sParam) 
+          {
+              return sParameterName[1];
+          }
+      }
+  }    
+  
+  $(document).ready(function(){
+	var building = getUrlParameter("building");
+	if (!building) {
+		window.location.search = "?building=1";
+	}
+	getUrlParameter("building");
+	
+	setTitle();
+	setRouterStatus();
+	setSwitchStatus();
+	setPcStatus();
+  });
+  
+  function setTitle(){
+	var url = "/data/building/" + getUrlParameter("building");
+	$.ajax({
+		"url" : url,
+		"type" : "get",
+		"datatype" : "json",
+		"success" : function(result){
+			$(".title").text(result["buildingName"]);	
+		}
+	});
+  }
+  
+  function setRouterStatus(){
+	  var url = "/data/router/in-building/" + getUrlParameter("building");
+	  $.ajax({
+		  "url" : url,
+		  "type" : "get",
+		  "datatype" : "json",
+		  "success" : function(resultData){
+			  var tbody = $("#routerStatusTbody");
+			  for(var i=0 ; i < resultData.length ; i++){
+				var result = resultData[i];
+			  	tbody.append("<tr class='alt'><td>" 
+			  			+ result["seq"] + "</td><td>"
+			  			+ result["roomName"] + "</td><td>"
+			  			+ result["ip"] + "</td><td>"
+			  			+ result["subnetMask"] + "</td></tr>");
+			  }
+		  }
+	  });
+  }
+  
+  function setSwitchStatus(){
+	  var url = "/data/switch/in-building/" + getUrlParameter("building");
+	  $.ajax({
+		  "url" : url,
+		  "type" : "get",
+		  "datatype" : "json",
+		  "success" : function(resultData){
+			  var tbody = $("#switchStatusTbody");
+			  for(var i=0 ; i < resultData.length ; i++){
+				var result = resultData[i];
+			  	tbody.append("<tr class='alt'><td>" 
+			  			+ result["seq"] + "</td><td>"
+			  			+ result["roomName"] + "</td><td>"
+			  			+ result["ip"] + "</td></tr>");
+			  }
+		  }
+	  });
+  }
+  
+  function setPcStatus(){
+	  var url ="/data/pc/in-building/" + getUrlParameter("building");
+	  $.ajax({
+		  "url" : url,
+		  "type" : "get",
+		  "datatype" : "json",
+		  "success" : function(resultData){
+			  var tbody = $("#pcStatusTbody");
+			  for(var i=0 ; i < resultData.length ; i++){
+				var result = resultData[i];
+			  	tbody.append("<tr class='alt'><td>" 
+			  			+ result["seq"] + "</td><td>"
+			  			+ result["roomName"] + "</td><td>"
+			  			+ result["ip"] + "</td></tr>");
+			  }
+		  }
+	  });
+  }
+  </script>
