@@ -5,7 +5,7 @@
 				<li class="dropdown">
           			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의실 <span class="caret"></span></a>
           			<ul class="dropdown-menu">
-            		<li><a href="Room_View.html">201호</a></li>
+            		<li><a href="Room_View">201호</a></li>
             		<li><a href="#">202호</a></li>
             		<li><a href="#">203호</a></li>
           			</ul>
