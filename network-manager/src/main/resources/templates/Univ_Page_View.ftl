@@ -1,9 +1,4 @@
 
-
- <div class="col-md-10 main" id="mainboard">
-
-    <div class="container-fluid">
-
       <div class="starter-template">
         <h1><span class="title">종합강의동</span> 장비 보유 현황</h1>
         <p class="lead">Router, Switch, PC에 대한 간략한 정보</p>
@@ -210,8 +205,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">서브네팅하기</button>
       </div>
-    </div>
-  </div>
+
   
   <script>
   function getUrlParameter(sParam)

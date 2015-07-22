@@ -39,7 +39,7 @@
 	        <#include path + ".ftl">
 	   </div>
 	   
-	   <#include "right-menu.ftl">
+
    </div>
    
    
