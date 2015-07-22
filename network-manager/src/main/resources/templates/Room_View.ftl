@@ -1,4 +1,12 @@
- <!-- Modal -->
+﻿    <style>
+
+        #pcBody td > button {
+            width: 50px;
+            height: 40px;
+        }
+    </style>
+    
+ 	<!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -24,27 +32,27 @@
                             <tbody>
                                 <tr>
                                     <td>PC Number</td>
-                                    <td><span id="PC_Num"></span></td>
+                                    <td><span id="PC_Num">1</span></td>
                                 </tr>
                                 <tr class="alt">
                                     <td>IP address</td>
-                                    <td><span id="IP_Add"></span></td>
+                                    <td><span id="IP_Add">192.168.1.1</span></td>
                                 </tr>
                                 <tr class="alt">
                                     <td>Subnet Mask</td>
-                                    <td><span id="Sub"></span></td>
+                                    <td><span id="Sub">255.255.255.0</span></td>
                                 </tr>
                                 <tr class="alt">
                                     <td>Gateway</td>
-                                    <td><span id="GateWay"></span></td>
+                                    <td><span id="GateWay">192.168.1.254</span></td>
                                 </tr>
                                 <tr class="alt">
                                     <td>DNS Sever</td>
-                                    <td><span id="DS1"></span></td>
+                                    <td><span id="DS1">152.23.142.27</span></td>
                                 </tr>
                                 <tr class="alt">
                                     <td>Sub DNS Sever</td>
-                                    <td><span id="DS2"></span></td>
+                                    <td><span id="DS2">152.23.142.28</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -64,11 +72,11 @@
     <div class="container-fluid">
         <div class="starter-template">
             <h1>101호</h1>
-            <p class="lead">과학기술대학</p>
+            <p class="lead">자연과학대학교</p>
         </div>
         <div class="row">
             <div class="col-md-10 left">
-                <h4>101호 PC Status<small>과학기술대학</small></h4>
+                <h4>101호 PC Status<small>자연과학대학교</small></h4>
             </div>
         </div>
         <div class="table-responsive">
@@ -146,3 +154,55 @@
                 </tbody>
             </table>
         </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+        <tr>
+            <td>네트워크</td>
+            <td width="10"><div align="center">:</div></td>
+            <td><div class="input-group"><input type="text" class="form-control" placeholder="Input the Network"></div></td>
+        </tr>
+        <tr>
+            <td>필요 host 개수</td>
+            <td width="10"><div align="center">:</div></td>
+            <td><div class="input-group"><input type="text" class="form-control" placeholder="Input the Number of host" /></div></td>
+        </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">서브네팅하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
