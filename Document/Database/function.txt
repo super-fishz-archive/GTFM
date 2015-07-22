@@ -1,25 +1,17 @@
 -- 대학 Page 라우터 list
 
 create view router_list as 	
-	select router.seq, router.ip, router.subnet_mask, room.room_name
+	select router.seq, router.name,router.ip, router.subnet_mask, room.room_name
 	from router join room
 	on router.room_seq = room.seq;
 
 
 create function building_router_list(int) RETURNS SETOF router_list as $$
-	select router_list.seq, router_list.ip, router_list.subnet_mask, router_list.room_name
+	select router_list.seq, router_list.name,router_list.ip, router_list.subnet_mask, router_list.room_name
 	from router_list join router on router_list.seq = router.seq
 	where router.building_seq = $1;
 $$ language sql;
 
-
-라우터명
-
-create function router_name(int) returns text as '
-	select substr(building.building_name, 1, 2) ||'라우터'|| router.seq
-	from router join building on router.building_seq = building.seq
-	where router.seq = $1
-' language sql;
 
 
 ----------------------------------------------------------------------------------------------------
@@ -28,38 +20,32 @@ create function router_name(int) returns text as '
 --대학 Page 스위치 list
 
 create view switch_list as
-	select switch.seq, switch.ip, room.room_name
+	select switch.seq as switch_seq, switch.name as switch_name, switch.ip, router.seq as router_seq, router.name as router_name, room.room_name
 	from switch join router
 	on switch.router_seq = router.seq
 	join room
-	on router.room_seq = room.seq;
+	on switch.room_seq = room.seq;
 
 create function building_switch_list(int) RETURNS SETOF switch_list as $$
-	select switch_list.seq, switch_list.ip, switch_list.room_name
-	from switch_list join switch on switch_list.seq = switch.seq
+	select switch_list.switch_seq, switch_list.switch_name, switch_list.ip, switch_list.router_seq, switch_list.router_name, switch_list.room_name
+	from switch_list join switch on switch_list.switch_seq = switch.seq
 	join router on switch.router_seq = router.seq
 	where router.building_seq = $1;
 $$ language sql;
 
-스위치명
-create function switch_name(int,int) returns text as '
-	select substr(building.building_name, 1, 2) ||'스위치'|| switch.seq
-	from switch join router on switch.router_seq = router.seq
-	join building on router.building_seq = building.seq
-	where 
 
 ----------------------------------------------------------------------------------------------------
 
 --대학 Page PC list
 
 create view pc_list as
-	select pc.seq, room.room_name, port.ip
+	select pc.seq, pc.name, room.room_name, port.ip
 	from pc join room
 	on pc.room_seq = room.seq
 	join port on port.pc_seq = pc.seq;
 
 create function building_pc_list(int) RETURNS SETOF pc_list as $$
-	select pc_list.seq, pc_list.room_name, pc_list.ip
+	select pc_list.seq, pc_list.name, pc_list.room_name, pc_list.ip
 	from pc_list join pc
 	on pc_list.seq = pc.seq
 	join room
@@ -90,7 +76,7 @@ $$ language sql;
 -- PC 정보 확인
 
 create view pc_info_vu as
-	select pc.seq, port.ip, port.subnet_mask, port.default_gateway, port.dns_server, port.sub_dns_server
+	select pc.seq, pc.name, port.ip, port.subnet_mask, port.default_gateway, port.dns_server, port.sub_dns_server
 	from pc join port
 	on pc.seq = port.pc_seq;
 
@@ -108,7 +94,7 @@ $$ language sql;
 --pc 테이블 insert 함수
 
 create function insert_pc(a int, b int, c varchar, d int) returns void as '
-	insert into pc(seq, room_seq, memo)
+	insert into pc(seq, room_seq, name)
 	values (a, b, c);
 	update port
 	set pc_seq = a
@@ -175,8 +161,8 @@ $$ language sql;
 
 --라우터 정보
 
-create function router_info(int) returns table(ip text, default_gateway text, subnet_mask text, location text) as $$
-	select router.ip, router.default_gateway, router.subnet_mask, building.building_name ||' '|| room.room_name as location
+create function router_info(int) returns table(name text, ip text, default_gateway text, subnet_mask text, location text) as $$
+	select router.name, router.ip, router.subnet_mask, building.building_name ||' '|| room.room_name as location
 	from router join building
 	on router.building_seq = building.seq
 	join room
