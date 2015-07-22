@@ -13,7 +13,7 @@
 				<li class="dropdown">
           			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">스위치 <span class="caret"></span></a>
           			<ul class="dropdown-menu">
-            		<li><a href="Switch_Page_View_S.html">스위치1</a></li>
+            		<li><a href="Switch_Page_View_S">스위치1</a></li>
             		<li><a href="#">스위치2</a></li>
             		<li><a href="#">스위치3</a></li>
           			</ul>
@@ -54,7 +54,7 @@
             		<li><a href="#">스위치3</a></li>
           			</ul>
           </ul>
-          <h3><a href="Univ_Page_View.building=4" target="#mainboard">종합강의동</a></h3>
+          <h3><a href="Univ_Page_View?building=4" target="#mainboard">종합강의동</a></h3>
           <ul class="nav nav-sidebar">
 				<li class="dropdown">
           			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">강의실 <span class="caret"></span></a>
