@@ -20,4 +20,8 @@
 		delete from switch
 		where seq = #{seq}
 	</delete>
+	
+	<select id="selectSwitchInBuilding" resultType="team.gtfm.server.bean.SwitchStatus">
+		select (building_switch_list(#{seq})).*
+	</select>
 </mapper>

@@ -19,4 +19,8 @@
 	<delete id="deletePc">
 		delete from pc where seq = #{seq}
 	</delete>
+	
+	<select id="selectPcInBuilding" resultType="team.gtfm.server.bean.PcStatus">
+		select (building_pc_list(#{buildingSeq})).*
+	</select>
 </mapper>
