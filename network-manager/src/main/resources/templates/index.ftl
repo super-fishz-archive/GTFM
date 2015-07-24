@@ -45,7 +45,6 @@
             <table class="table table-bordered table-striped">
                 <colgroup>
                     <col class="col-lg-3">
-                    <col class="col-lg-2">
                     <col class="col-lg-3">
                     <col class="col-lg-3">
                 </colgroup>
